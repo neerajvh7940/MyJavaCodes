@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+class Account{
+    private String name;
+    private long accountNum;
+    private long balance;
+    public Account(String name, long accountNum, long balance) {
+        this.name = name;
+        this.accountNum = accountNum;
+        this.balance = balance;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public double getAccountNum() {
+        return accountNum;
+    }
+    public void setAccountNum(long accountNum) {
+        this.accountNum = accountNum;
+    }
+    public long getBalance() {
+        return balance;
+    }
+    public void setBalance(long balance) {
+        this.balance = balance;
+    }
+    public void depositAmount(long Money){
+        this.balance+=Money;
+    }
+    public void withdrawMoney(long Money){
+        this.balance-=Money;
+    }
+    public String getAccount_info(){
+        return "Name: "+name+", Account Number: "+accountNum+", Balance: "+balance;
+    }
+}
+class Bank{
+    ArrayList<Account> accounts = new ArrayList<Account>();
+    public void addAccount(Account obj){
+        accounts.add(obj);
+    }
+    public void removeAccount(Account obj){
+        accounts.remove(obj);
+    }
+    public void deposit(Account obj, long amount){
+        obj.depositAmount(amount);
+    }
+    public void withdraw(Account obj, long amount){
+        obj.withdrawMoney(amount);
+    }
+    public ArrayList<Account> get_accounts(){
+        return accounts;
+    }
+}
+class Main{
+    public static void main(String args[]){
+
+        Bank axis = new Bank();
+        Account acc1 = new Account("Neeraj Hallikeri",1058919029,52756000);
+        Account acc2 = new Account("Neeraj Hallikeri",1058919030,52756000);
+        Account acc3 = new Account("Neeraj Hallikeri",1058919042,52756000);
+        axis.addAccount(acc1);
+        Bank sbi = new Bank();
+        sbi.addAccount(acc2);
+        sbi.addAccount(acc3);
+        ArrayList<Account> sbi_accounts = sbi.get_accounts();
+        for(Account acc : sbi_accounts){
+            System.out.println(acc.getAccount_info());
+        }
+        ArrayList<Account> axis_accounts = axis.get_accounts();
+        for(Account acc: axis_accounts){
+            System.out.println(acc.getAccount_info());
+        }
+    }
+}
